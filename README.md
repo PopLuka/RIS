@@ -71,36 +71,87 @@ Projekt/
                 └── date-utils.js
 ```
 
-## Navodila za nameščanje in zagon
+## Navodila za nameščanje
 
-1. V projektni mapi zaženi PostgreSQL:
+### Kaj je treba namestiti
 
-   ```powershell
-   docker compose up -d postgres
-   ```
+Pred zagonom aplikacije namesti:
 
-2. V novem PowerShell terminalu zaženi backend:
+- **Git** — za prenos projekta z GitHuba.
+- **JDK 21** — Maven Wrapper za backend potrebuje Javo 21.
+- **Node.js 18 ali novejši** — skupaj z njim se namesti tudi `npm`.
+- **Docker Desktop** — za zagon PostgreSQL podatkovne baze. Docker Desktop mora med delom aplikacije teči.
 
-   ```powershell
-   cd backend
-   $env:JAVA_HOME = 'C:\Program Files\Java\jdk-21.0.12'
-   $env:MAVEN_OPTS = "-Duser.home=$env:USERPROFILE"
-   .\mvnw.cmd spring-boot:run
-   ```
+Namestitev preveri v PowerShellu:
 
-   Backend posluša na `http://localhost:8080`.
+```powershell
+git --version
+java -version
+node --version
+npm --version
+docker --version
+docker compose version
+```
+### Prenos projekta
 
-3. V drugem terminalu zaženi frontend:
+```powershell
+cd $HOME\Documents
+git clone github.com/PopLuka/RIS
+cd <Ime_repozitorija>
+```
+`<Ime_repozitorija>` zamenjaj z imenom nastale mape.
 
-   ```powershell
-   cd frontend
-   npm install
-   npm start
-   ```
+## Zagon projekta
 
-   Odpri `http://localhost:3000`.
+### Zagon podatkovne baze
+V korenski mapi najprej zaženi **PostgreSQL:**
+```powershell
+docker compose up -d postgres
+```
+Naslednji zagon pa:
+```powershell
+docker compose start postgres
+```
 
-Povezavo s PostgreSQL lahko nastaviš z okoljskimi spremenljivkami `DB_URL`, `DB_USERNAME` in `DB_PASSWORD`. Privzeta povezava je `jdbc:postgresql://localhost:5432/potovanja`.
+Preveri, ali docker teče:
+```powershell
+docker compose ps
+```
+Docker Compose uporabi PostgreSQL 17 in ustvari podatkovno bazo potovanja. Privzeti uporabniški podatki so:
+- uporabnik: `postgres`
+- geslo: `postgres`
+- naslov: `localhost:5432`
+Podatki se hranijo v Dockerjevem trajnem volumnu `potovanja-postgres-data`.
+
+### Zagon backend-a
+V novem PowerShell terminalu se pomakni v mapo `backend`:
+```PowerShell
+cd <Pot_do_projekta>\backend
+.\mwnw.cmd spring-boot:run
+```
+Maven Wrapper ob prvem zagonu prenese Maven in Java dependency-je. Ob zagonu deluje na: `http://localhost:8080`
+Za dokumentacijo API-ja odpri: `http://localhost:8080/swagger-ui/index.html`
+
+> Če backend ne zazna Jave 21, nastavi `JAVA_HOME` na mapo, kjer je nameščen JDK 21:
+> ```powershell
+> $env:JAVA_HOME = 'C:\pot\do\jdk-21'
+> ```
+> in ponovno zaženi backend.
+
+### Zagon frontend-a
+V novem PowerShell terminalu se pomakni v mapo `frontend`:
+```PowerShell
+cd <Pot_do_projekta>\frontend
+npm ci
+npm start
+```
+Frontend teče na naslovu: `http://localhost:3000` odpri ga v [brskalniku](http://localhost:3000).
+
+## Ustavitev projekta
+V terminalih, kjer tečeta frontend in backend pritisni `CTRL+C`, PostgreSQL pa s terminalom v korenski mapi pa ustavi z:
+```powershell
+docker compose stop postgres
+```
 
 ## Navodila za razvijalce
 

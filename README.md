@@ -163,8 +163,24 @@ V terminalih, kjer tečeta frontend in backend pritisni `CTRL+C`, PostgreSQL pa 
 docker compose stop postgres
 ```
 
-## ~~Navodila za razvijalce~~
-- TBA
+## Navodila za razvijalce
+Prispevki so dobrodošli. Predlagani postopek:
 
-## ~~Standardi kodiranja~~
-- TBA
+1. Kloniraj repozitorij in preveri, da se aplikacija zažene po navodilih v razdelku **Zagon projekta**.
+2. Za spremembo ustvari svojo vejo:
+   ```bash
+   git switch -c opis-spremembe
+3. Spremembe omeji na eno funkcionalnost ali popravek.
+4. Preveri delovanje aplikacije in po potrebi dodaj ali posodobi teste.
+5. Oddaj spremembe v pull request z opisom, kaj se je spremenilo in kako si preveril delovanje.  
+  
+Za preverjanje backend testov v mapi backend zaženi: `.\mvnw.cmd test`  
+Frontend trenutno nima nastavljenega samodejnega ukaza za teste. Njegove spremembe preveri z zagonom aplikacije po navodilih za zagon.
+
+## Standardi kodiranja
+Pri novih spremembah upoštevaj slog, ki ga projekt že uporablja:
+- **Java**: uporabljaj tabulatorje za zamik, imena paketov piši z malimi črkami, imena razredov z PascalCase, metode in spremenljivke pa z camelCase. Za injiciranje storitev uporabljaj konstruktorje.
+- **Backend**: ohranjaj ločitev na kontrolerje, storitve, repozitorije in modele. Končne točke REST naj sledijo obstoječim vzorcem v PotovanjeKontroler.
+- **JavaScript**: uporabljaj ES module, const kadar spremenljivke ne prepisuješ, camelCase, enojne narekovaje in podpičja. Asinhrone klice piši z `async`/`await`.
+- **Frontend**: kodo organiziraj po namenu v obstoječe mape, na primer api/, calendar/, trips/ in utils/.
+- **CSS**: pri barvah in skupnih slogovnih vrednostih uporabljaj obstoječe spremenljivke CSS v :root; odzivni slog dodajaj z medijskimi poizvedbami.

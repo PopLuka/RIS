@@ -163,7 +163,8 @@ V terminalih, kjer tečeta frontend in backend pritisni `CTRL+C`, PostgreSQL pa 
 docker compose stop postgres
 ```
 
-## Navodila za razvijalce
+## ~~Navodila za razvijalce~~
+- TBA
 
-
-## Standardi kodiranja
+## ~~Standardi kodiranja~~
+- TBA

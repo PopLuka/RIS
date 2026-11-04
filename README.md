@@ -2,6 +2,16 @@
 
 Aplikacija za planiranje potovanj ali drugih dogodkov. Cilja na pregleden in simplističen nadzor nad prihajajočimi in preteklimi dogodki.
 
+## Kazalo vsebine
+
+- [Uporabljene tehnologije](#uporabljene-tehnologije)
+- [Struktura projekta](#struktura-projekta)
+- [Navodila za nameščanje](#navodila-za-nameščanje)
+- [Zagon projekta](#zagon-projekta)
+- [Ustavitev projekta](#ustavitev-projekta)
+- [Navodila za razvijalce](#navodila-za-razvijalce)
+- [Standardi kodiranja](#standardi-kodiranja)
+
 ## Uporabljene tehnologije
 
 ### Aplikacija uporablja Spring Boot REST API, PostgreSQL in HTML vmesnik, ki ga streže Express.

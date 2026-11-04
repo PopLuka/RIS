@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: potovanja-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: potovanja
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - potovanja-postgres-data:/var/lib/postgresql/data
+
+volumes:
+  potovanja-postgres-data:

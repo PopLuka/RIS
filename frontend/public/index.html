@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="sl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7f2">
+    <title>Potovanja — načrtuj naslednji pobeg</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <script type="module" src="/js/app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Potovanja, domov"><span class="brand-mark">✳</span> potovanja<span class="brand-period">.</span></a>
+      <span class="topbar-note"><span class="status-dot"></span> Tvoj prostor za nove zgodbe</span>
+    </header>
+
+    <main class="page-shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span>✦</span> POTOVALNI DNEVNIK</p>
+          <h1>Kam te bo<br>odneslo <span>naslednjič?</span></h1>
+          <p class="hero-description">Vsi tvoji pobegi na enem mestu.<br>Veliki načrti se začnejo z majhno idejo.</p>
+          <a class="primary-button hero-button" href="#urejevalnik"><span>＋</span> Načrtuj potovanje</a>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="sun"></div><div class="hill hill-back"></div><div class="hill hill-front"></div>
+          <div class="art-label"><span>↗</span><span>naslednja postaja:<br><strong>kjerkoli</strong></span></div>
+          <div class="art-sparkle sparkle-one">✳</div><div class="art-sparkle sparkle-two">✦</div>
+        </div>
+      </section>
+
+      <section class="trips-section" aria-labelledby="trips-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">TVOJI NAČRTI</p><h2 id="trips-title">Potovanja <span id="trip-count">(0)</span></h2></div>
+        </div>
+        <div class="trip-filters" aria-label="Filtri potovanj">
+          <label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Poišči potovanje …" aria-label="Poišči potovanje"></label>
+          <label class="filter-field">Lokacija<input id="filter-location" type="search" placeholder="npr. Praga" aria-label="Filtriraj po lokaciji"></label>
+          <label class="filter-field">Od datuma<input id="filter-from" type="date" aria-label="Od datuma"></label>
+          <label class="filter-field">Do datuma<input id="filter-to" type="date" aria-label="Do datuma"></label>
+          <button id="clear-filters" class="text-button clear-filters" type="button">Počisti filtre</button>
+        </div>
+        <p id="notice" class="notice" role="status" aria-live="polite"></p>
+        <div id="trip-list" class="trip-grid" aria-live="polite"></div>
+        <section class="calendar-section" aria-labelledby="calendar-title">
+          <div class="calendar-heading">
+            <div><p class="eyebrow">PREGLED PO DNEVIH</p><h2 id="calendar-title">Koledar</h2></div>
+            <div class="calendar-navigation"><button id="previous-month" class="calendar-nav-button" type="button" aria-label="Prejšnji mesec">‹</button><h3 id="calendar-month"></h3><button id="next-month" class="calendar-nav-button" type="button" aria-label="Naslednji mesec">›</button></div>
+          </div>
+          <div class="calendar-grid" id="calendar-grid" aria-live="polite"></div>
+          <p class="calendar-hint">Potovanje je v koledarju označeno za vsak dan od odhoda do vrnitve.</p>
+        </section>
+      </section>
+
+      <section id="urejevalnik" class="editor-section">
+        <div class="editor-intro"><p class="eyebrow">NOVA DOGODIVŠČINA</p><h2 id="form-title">Zapiši si <span>idejo.</span></h2><p>Izpolni osnovne podatke, za ostalo bo poskrbela domišljija.</p></div>
+        <form id="trip-form" class="trip-form">
+          <input type="hidden" id="trip-id">
+          <label>Ime potovanja<input id="name" name="ime" required maxlength="120" placeholder="npr. Vikend ob morju"></label>
+          <label>Kam se odpraviš?<input id="destination" name="cilj" required maxlength="120" placeholder="npr. Piran"></label>
+          <div class="date-row"><label>Odhod<input id="start-date" name="datumZacetka" type="date" required></label><label>Vrnitev<input id="end-date" name="datumZakljucka" type="date" required></label></div>
+          <label class="full-width">Tvoja opomba <span class="optional">(neobvezno)</span><textarea id="description" name="opis" rows="3" maxlength="2000" placeholder="Kaj želiš doživeti?"></textarea></label>
+          <div class="form-actions full-width"><button id="submit-button" class="primary-button" type="submit">Shrani potovanje <span>↗</span></button><button id="cancel-edit" class="text-button" type="button" hidden>Prekliči urejanje</button></div>
+        </form>
+      </section>
+      <footer><span>✳ potovanja.</span><span>Vsaka velika pot se začne z idejo.</span></footer>
+    </main>
+    <template id="trip-card-template">
+      <article class="trip-card"><div class="card-top"><span class="destination-icon" aria-hidden="true">↗</span><div class="card-actions"><button class="icon-button edit-button" type="button" aria-label="Uredi potovanje">Uredi</button><button class="icon-button delete-button" type="button" aria-label="Izbriši potovanje">Izbriši</button></div></div><p class="trip-dates"></p><h3 class="trip-name"></h3><p class="trip-destination"></p><p class="trip-description"></p></article>
+    </template>
+  </body>
+</html>

@@ -1,6 +1,7 @@
 # Aplikacija Potovanja
 
 Aplikacija za planiranje potovanj ali drugih dogodkov. Cilja na pregleden in simplističen nadzor nad prihajajočimi in preteklimi dogodki.
+> dopolni
 
 ## Kazalo vsebine
 
@@ -46,13 +47,13 @@ Projekt/
 │       │   ├── java/si/feri/um/app/
 │       │   │   ├── Aplikacija.java
 │       │   │   ├── OpenApiNastavitve.java
-│       │   │   ├── kontroler/
+│       │   │   ├── kontroler/  <------------------------------- kontrolerji
 │       │   │   │   └── PotovanjeKontroler.java
-│       │   │   ├── model/
+│       │   │   ├── model/      <------------------------------- osnovna definicija objekta
 │       │   │   │   └── Potovanje.java
-│       │   │   ├── repozitorij/
+│       │   │   ├── repozitorij/  <----------------------------- repo potovanj
 │       │   │   │   └── PotovanjeRepozitorij.java
-│       │   │   └── storitev/
+│       │   │   └── storitev/     <----------------------------- dodane funkcionalnosti
 │       │   │       ├── PotovanjeNiBiloNajdenoIzjema.java
 │       │   │       └── PotovanjeStoritev.java
 │       │   └── resources/
